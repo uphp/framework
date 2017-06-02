@@ -1,6 +1,6 @@
 {
-    "name": "uphp/exception",
-    "description": "Este pacote serve para adicionar UphpException ao uphp",
+    "name": "uphp/framework",
+    "description": "Framework UPhp",
     "authors": [ 
         {
             "name": "Diego Bentes",
