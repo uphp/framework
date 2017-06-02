@@ -11,6 +11,18 @@
 
         public function start()
         {
+           //carregando os initializers
+           $this->getInitializersFiles();
+        }
 
+        private function getInitializersFiles(){
+            $path = "config/initializers/";
+            $directory = dir($path);
+            while($file = $directory -> read()){
+                if ( $file != "." && $file != ".." ) {
+                    require($path . $file);
+                }
+            }
+            $directory->close();
         }
     }
