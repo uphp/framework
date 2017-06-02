@@ -13,6 +13,6 @@
          "uphp/exception": "^1.0"
     },
     "autoload": {
-        "files": ["src/UphpException.php"]
+        "files": ["Uphp/web/Application.php"]
     }
  }
