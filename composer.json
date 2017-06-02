@@ -9,7 +9,7 @@
     ],    
     "require": {
          "php": ">=7.0.0",
-         "uphp/inflectin": "^1.0",
+         "uphp/inflection": "^1.0",
          "uphp/exception": "^1.0"
     },
     "autoload": {
