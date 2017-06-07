@@ -18,7 +18,6 @@ class Application
         $this->getInitializersFiles();
         $this->getRoutes();
         ActionController::callController($config);
-
     }
 
     private function getInitializersFiles()
