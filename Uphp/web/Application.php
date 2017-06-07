@@ -14,7 +14,7 @@ class Application
 
     public function start($config)
     {
-       //carregando os initializers
+        //carregando os initializers
         $this->getInitializersFiles();
         $this->getRoutes();
         ActionController::callController($config);
