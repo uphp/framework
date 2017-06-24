@@ -9,11 +9,11 @@
     ],    
     "require": {
          "php": ">=7.0.0",
-         "uphp/inflection": "^0.0.1",
-         "uphp/exception": "^0.0.1",
-         "uphp/action-controller": "^0.0.1",
-         "uphp/helpers": "^0.0.2",
-         "uphp/routes": "^0.0.1"
+         "uphp/inflection": ">0.0.0",
+         "uphp/exception": ">0.0.0",
+         "uphp/action-controller": ">0.0.0",
+         "uphp/helpers": ">0.0.0",
+         "uphp/routes": ">0.0.0"
     },
     "autoload": {
         "files": ["Uphp/web/Application.php"]
