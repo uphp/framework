@@ -17,12 +17,27 @@ class Application
         //carregando os initializers
         $this->getInitializersFiles();
         $this->getRoutes();
+        $this->getLang();
         ActionController::callController($config);
     }
 
     private function getInitializersFiles()
     {
-        $path = "config/initializers/";
+        $this->requireAllDir("config/initializers/");
+    }
+
+    private function getRoutes()
+    {
+        return require("config/routes.php");
+    }
+
+    private function getLang()
+    {
+        $this->requireAllDir("app/languages/");
+    }
+
+    private function requireAllDir($path)
+    {
         $directory = dir($path);
         while ($file = $directory -> read()) {
             if ($file != "." && $file != "..") {
@@ -30,10 +45,5 @@ class Application
             }
         }
         $directory->close();
-    }
-
-    private function getRoutes()
-    {
-        return require("config/routes.php");
     }
 }
