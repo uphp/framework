@@ -14,8 +14,9 @@
          "uphp/exception": ">0.0.0",
          "uphp/helpers": ">0.0.0",
          "uphp/inflection": ">0.0.0",
-         "uphp/languages": ">0.0.0",         
-         "uphp/routes": ">0.0.0"
+         "uphp/languages": ">0.0.0",
+         "uphp/routes": ">0.0.0",
+         "uphp/active-record-validation": ">0.0.0"
     },
     "autoload": {
         "files": ["Uphp/web/Application.php"]
