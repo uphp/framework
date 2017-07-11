@@ -1,19 +1,16 @@
 <?php
 namespace Uphp\web;
 
-use src\Inflection;
-use \UPhp\ActionDispach\Routes as Route;
 use \UPhp\ActionController\ActionController;
 
 class Application
 {
     public static $appConfig = [];
-    public static $templateConfig = [];
 
     public function __construct()
     {
-        //set_exception_handler("src\uphpExceptionHandler");
-        //set_error_handler("src\uphpErrorHandler");
+        set_exception_handler("src\uphpExceptionHandler");
+        set_error_handler("src\uphpErrorHandler");
     }
 
     public function start($config)
@@ -43,10 +40,6 @@ class Application
 
     private function loadAppConfig(){
         $config = require("config/application.php");
-        if (isset($config["template"])) {
-            $templateConfig = require("config/" . Inflection::tableize($config["template"]) . ".php");
-            self::$templateConfig = $templateConfig;
-        }
         self::$appConfig = $config;
     }
 
@@ -55,7 +48,11 @@ class Application
         $directory = dir($path);
         while ($file = $directory -> read()) {
             if ($file != "." && $file != "..") {
-                require($path . $file);
+                if (is_dir($path .  $file)) {
+                    $this->requireAllDir($path . $file . "/");
+                } else {
+                    require($path . $file);
+                }
             }
         }
         $directory->close();
