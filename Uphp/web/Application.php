@@ -5,7 +5,7 @@ use \UPhp\ActionController\ActionController;
 
 class Application
 {
-    public static $appConfig = [];
+    public static $appConfig;
 
     public function __construct()
     {
@@ -26,6 +26,7 @@ class Application
     private function getInitializersFiles()
     {
         $this->requireAllDir("config/initializers/");
+        $this->requireAllDir("vendor/uphp/", true);
     }
 
     private function getRoutes()
@@ -43,18 +44,26 @@ class Application
         self::$appConfig = $config;
     }
 
-    private function requireAllDir($path)
+    private function requireAllDir($path, $requireVendor = false)
     {
-        $directory = dir($path);
-        while ($file = $directory -> read()) {
-            if ($file != "." && $file != "..") {
-                if (is_dir($path .  $file)) {
-                    $this->requireAllDir($path . $file . "/");
-                } else {
-                    require($path . $file);
+        if (is_dir($path)) {
+            $directory = dir($path);
+            while ($file = $directory->read()) {
+                if ($file != "." && $file != "..") {
+                    if (is_dir($path . $file)) {
+                        if ($requireVendor) {
+                            $this->requireAllDir($path . $file . "/initializers/");
+                        } else {
+                            $this->requireAllDir($path . $file . "/");
+                        }
+                    } else {
+                        if (file_exists($path . $file)) {
+                            require($path . $file);
+                        }
+                    }
                 }
             }
+            $directory->close();
         }
-        $directory->close();
     }
 }
