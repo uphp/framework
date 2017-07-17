@@ -19,6 +19,8 @@
          "uphp/active-record-validation": ">0.0.0"
     },
     "autoload": {
-        "files": ["Uphp/web/Application.php"]
+        "psr-4": {
+          "UPhp\\Web\\": "src/"
+        }
     }
  }
