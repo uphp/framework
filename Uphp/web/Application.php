@@ -39,9 +39,24 @@ class Application
         $this->requireAllDir("app/languages/");
     }
 
-    private function loadAppConfig(){
+    private function loadAppConfig()
+    {
         $config = require("config/application.php");
+        $config["models"] = $this->getModels();
         self::$appConfig = $config;
+    }
+
+    private function getModels()
+    {
+        $path = "app/models";
+        $arrModels = [];
+        if (is_dir($path)) {
+            $directory = dir($path);
+            while ($file = $directory->read()) {
+                $arrModels[] = explode(".", $file)[0];
+            }
+        }
+        return $arrModels;
     }
 
     private function requireAllDir($path, $requireVendor = false)
