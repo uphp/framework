@@ -1,7 +1,9 @@
 <?php
-namespace Uphp\web;
+namespace UPhp\Web;
 
+use src\Inflection;
 use \UPhp\ActionController\ActionController;
+use UPhp\ActionDispach\Routes;
 
 class Application
 {
@@ -20,7 +22,17 @@ class Application
         $this->getInitializersFiles();
         $this->getRoutes();
         $this->getLang();
+
+        $route = Routes::getControllerAction($config);
+        self::$appConfig["controllerName"] = Inflection::classify(Inflection::singularize($route["CONTROLLER"]));
+        self::$appConfig["actionName"] = $route["ACTION"];
+
         ActionController::callController($config);
+    }
+
+    public function context()
+    {
+        return $this;
     }
 
     private function getInitializersFiles()
@@ -79,6 +91,16 @@ class Application
                 }
             }
             $directory->close();
+        }
+    }
+
+    public function __call($name, $arguments)
+    {
+
+        if (array_key_exists($name, self::$appConfig)) {
+            return self::$appConfig[$name];
+        } else {
+            throw new OptionConfigNotExists();
         }
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Uphp\web;
+namespace UPhp\Web;
 
 /**
  * ActiveRecord
