@@ -96,7 +96,6 @@ class Application
 
     public function __call($name, $arguments)
     {
-
         if (array_key_exists($name, self::$appConfig)) {
             return self::$appConfig[$name];
         } else {
