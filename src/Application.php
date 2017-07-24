@@ -22,6 +22,7 @@ class Application
         $this->getInitializersFiles();
         $this->getRoutes();
         $this->getLang();
+        $this->getDB();
 
         $route = Routes::getControllerAction($config);
         self::$appConfig["controllerName"] = Inflection::classify(Inflection::singularize($route["CONTROLLER"]));
@@ -69,6 +70,13 @@ class Application
             }
         }
         return $arrModels;
+    }
+
+    private function getDB()
+    {
+        if (! isset(self::$appConfig["DB"]) || self::$appConfig["DB"] === true) {
+            \ActiveRecord\adapters\MysqlAdapter::connect();
+        }
     }
 
     private function requireAllDir($path, $requireVendor = false)
