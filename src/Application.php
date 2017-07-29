@@ -22,7 +22,9 @@ class Application
         $this->getInitializersFiles();
         $this->getRoutes();
         $this->getLang();
-        $this->getDB();
+        if (self::$appConfig["AppName"] != "Cipaweb") {
+            $this->getDB();
+        }
 
         $route = Routes::getControllerAction($config);
         self::$appConfig["controllerName"] = Inflection::classify(Inflection::singularize($route["CONTROLLER"]));
