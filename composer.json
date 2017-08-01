@@ -15,8 +15,7 @@
          "uphp/helpers": ">0.0.0",
          "uphp/inflection": ">0.0.0",
          "uphp/languages": ">0.0.0",
-         "uphp/routes": ">0.0.0",
-         "uphp/ORM": ">0.0.0"
+         "uphp/routes": ">0.0.0"
     },
     "autoload": {
         "psr-4": {
