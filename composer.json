@@ -21,5 +21,6 @@
         "psr-4": {
           "UPhp\\Web\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev"
  }
