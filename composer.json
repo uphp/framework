@@ -18,6 +18,7 @@
          "uphp/routes": "@dev"
     },
     "autoload": {
+        "files": ["lib/UPhp.php"],
         "psr-4": {
           "UPhp\\Web\\": "src/"
         }
