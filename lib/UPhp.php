@@ -3,18 +3,19 @@ use \ActiveRecord\ConnectionManager;
 
 class UPhp
 {
-    public static $app;
     private $connection = null;
 
-    public function __construct()
+    public static function app()
     {
-        self::$app = new self();
+        return new self();
     }
 
-    public function db(string $configNameDB)
+    public function db(string $configNameDB = null)
     {
-        if (empty($configNameDB) $this->setConnection(ConnectionManager::get_connection());
+        if (empty($configNameDB)) $this->setConnection(ConnectionManager::get_connection());
         else $this->setConnection(ConnectionManager::get_connection(null, $configNameDB));
+
+        return $this;
     }
 
     public function executeSQL(string $sql = null, array $values = [])
